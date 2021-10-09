@@ -47,6 +47,15 @@ app.post('/todos', (req, res) => {
   .catch(error => console.error(error))
 })
 
+// Detail 路由設定
+app.get('/todos/:id', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+  .lean()
+  .then(todo => res.render('detail', { todo }))
+  .catch(error => console.error(error))
+})
+
 
 app.get('/', (req, res) => {
   Todo.find() // 取出 Todo model 裡的所有資料
