@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 3000
 const exphbs = require('express-handlebars')
 const Todo = require('./models/todo') // 載入 Todo model
 const bodyParser = require('body-parser')
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/todo-list'
 
 app.engine('hbs', exphbs ({ defaultLayout: 'main' , extname: '.hbs'}))
 
@@ -12,8 +13,9 @@ app.set('view engine', 'hbs')
 // 使用body-parser
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/todo-list', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 取得連線狀態
 const db = mongoose.connection
