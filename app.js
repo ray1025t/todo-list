@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const exphbs = require('express-handlebars')
 const Todo = require('./models/todo') // 載入 Todo model
 const bodyParser = require('body-parser')
@@ -92,6 +92,6 @@ app.get('/', (req, res) => {
     .catch(error => console.error(error)) // 錯誤處理
 })
 
-app.listen(port , () => {
-  console.log(`Express running on http:localhost:${port}`)
+app.listen(PORT , () => {
+  console.log(`Express running on http:localhost:${PORT}`)
 })
